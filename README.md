@@ -17,7 +17,7 @@ python deepexplorer.py "legal thing" 30 none (do not crawl, only obtain links fr
 
 
 # About
-Deep Explorer is a tool designed to search (any) thing in a few secons
+Deep Explorer is a tool designed to search (any) thing in a few seconds
 
 Any idea, failure etc please report to telegram: blueudp
 
