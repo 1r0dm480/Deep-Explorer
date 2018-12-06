@@ -28,7 +28,7 @@ Tested in ParrotOS and Kali Linux 2.0
 # Type of Errors
 + Error importing... -> You should try manual pip install package
 + Error connecting to server -> Cant connect to ahmia browser
-+ IOError' (writing file) -> Just press y and ignore
++ 'IOError' (writing file) -> Just press y and ignore
 
 # Termux
 
