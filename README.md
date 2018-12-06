@@ -1,5 +1,5 @@
 # Deep Explorer
-<a href="https://asciinema.org/a/XT6U3c9XqwSNN4vTetxssc0e9" target="_blank"><img src="https://asciinema.org/a/XT6U3c9XqwSNN4vTetxssc0e9.png" /></a>
+ here will be asciinema
 
 # Dependencies
      pip install -r requirements.txt
