@@ -223,6 +223,6 @@ if __name__ == "__main__":
         crawld = sys.argv[3]
         search(crawld) # main func
     except KeyboardInterrupt:
-        print("Exiting. . .")
+        print("\nExiting. . .")
         os.system("sudo service tor stop")
     
