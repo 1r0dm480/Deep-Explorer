@@ -2,6 +2,7 @@
 <a href="https://asciinema.org/a/DFmZ61APHIZnwfXFHn4sAxfJm" target="_blank"><img src="https://asciinema.org/a/DFmZ61APHIZnwfXFHn4sAxfJm.svg" /></a>
 # Dependencies
      pip install -r requirements.txt
+also you should have Tor installed    
 # Usage
 
 python deepexplorer.py STRING_TO_SEARCH NUMBER_OF_RESULTS TYPE_OF_CRAWL
@@ -28,7 +29,6 @@ Tested in ParrotOS and Kali Linux 2.0
 + Error importing... -> You should try manual pip install package
 + Error connecting to server -> Cant connect to ahmia browser
 + 'IOError' (writing file) -> Just press y and ignore
-
 # Is this illegal?
 It depends, Deep Explorer is not designed with the purpose of searching illegal things, remember that Tor it's a simple network
 
