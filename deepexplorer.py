@@ -43,57 +43,65 @@ def crawl(option, deeplinks, link):
         iterations = 0
         
         while len(deeplinks) <= number_results or length_of_web_links_to_crawl <= iterations:
-            with timeout(10):
-                crawl = requests.get(deeplinks[iterations], proxies=proxies)
-            crawl = crawl.text
             try:
-                soup = BeautifulSoup(crawl, "lxml")
+                with timeout(10):
+                    crawl = requests.get(deeplinks[iterations], proxies=proxies)
             except:
-                print("Error creating 'soup' object")
-                os.system("sudo service tor stop")
-                exit()
-            
-            for a in soup.find_all('a', href=True):
-                if len(deeplinks) >= number_results:
-                    print(" \033[0;32m LINKS COLLECTED!\033[0m")
+                error=True
+            if not error:
+                crawl = crawl.text
+                try:
+                    soup = BeautifulSoup(crawl, "lxml")
+                except:
+                    print("Error creating 'soup' object")
                     os.system("sudo service tor stop")
                     exit()
-                darklink = isonion(iterations['href'])    
-                if darklink:
-                # write to file
-                    if not darklink in deeplinks:
-                        with open("results.txt", 'a') as f:
-                            f.write("\n" + darklink)
-                        f.close()
-                        deeplinks.append(darklink)         
-                        print(darklink)    
-            iterations+=1          
-    if option is "all":
-        with timeout(10):
-            crawl = requests.get(link, proxies=proxies)
-        crawl = crawl.text
-        try:
-            soup = BeautifulSoup(crawl, "lxml")
-        except:
-            print("Error creating 'soup' object")
-            os.system("sudo service tor stop")
-            exit()
-        print("Crawling from : " + "[\033[0;31m" + link + "\033[0m]")
-        for a in soup.find_all('a', href=True):
-            if len(deeplinks) >= number_results:     
-                print(" \033[0;32m LINKS COLLECTED!\033[0m")
-                os.system("sudo service tor stop")
-                exit()
-                
-            darklink = isonion(a['href'])   
-            if darklink:
-                # write to file
-                if not darklink in deeplinks:
-                    with open("results.txt", 'a') as f:
-                        f.write("\n" + darklink)
-                    f.close()
-                    deeplinks.append(darklink)
-                    print(darklink)
+            
+                for a in soup.find_all('a', href=True):
+                    if len(deeplinks) >= number_results:
+                        print(" \033[0;32m LINKS COLLECTED!\033[0m")
+                        os.system("sudo service tor stop")
+                        exit()
+                    darklink = isonion(iterations['href'])    
+                    if darklink:
+                    # write to file
+                        if not darklink in deeplinks:
+                            with open("results.txt", 'a') as f:
+                                f.write("\n" + darklink)
+                            f.close()
+                            deeplinks.append(darklink)         
+                            print(darklink)    
+                iterations+=1          
+        if option is "all":
+            try:
+                with timeout(10):
+                    crawl = requests.get(link, proxies=proxies)
+            except:
+                error=1
+            if not error:
+                crawl = crawl.text
+                    try:
+                        soup = BeautifulSoup(crawl, "lxml")
+                 except:
+                    print("Error creating 'soup' object")
+                    os.system("sudo service tor stop")
+                    exit()
+                print("Crawling from : " + "[\033[0;31m" + link + "\033[0m]")
+                for a in soup.find_all('a', href=True):
+                    if len(deeplinks) >= number_results:     
+                        print(" \033[0;32m LINKS COLLECTED!\033[0m")
+                        os.system("sudo service tor stop")
+                        exit()
+                   
+                    darklink = isonion(a['href'])   
+                    if darklink:
+                        # write to file
+                        if not darklink in deeplinks:
+                            with open("results.txt", 'a') as f:
+                                f.write("\n" + darklink)
+                            f.close()
+                            deeplinks.append(darklink)
+                            print(darklink)
 
 def isonion(darklink):
     if not ".onion" in darklink or "http://msydqstlz2kzerdg.onion" in darklink: # if there's not ".onion" in href, its not a tor link so... return False
