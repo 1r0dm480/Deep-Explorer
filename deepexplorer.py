@@ -38,6 +38,7 @@ proxies = {'http':'socks5h://127.0.0.1:9050', 'https':'socks5h://127.0.0.1:9050'
 # -------------------- FUNCS --------------------
 
 def crawl(option, deeplinks, link):
+    error = False
     if option is "default":
         length_of_web_links_to_crawl = len(deeplinks)
         iterations = 0
@@ -73,6 +74,7 @@ def crawl(option, deeplinks, link):
                             print(darklink)    
                 iterations+=1          
         if option is "all":
+           
             try:
                 with timeout(10):
                     crawl = requests.get(link, proxies=proxies)
@@ -80,9 +82,9 @@ def crawl(option, deeplinks, link):
                 error=1
             if not error:
                 crawl = crawl.text
-                    try:
-                        soup = BeautifulSoup(crawl, "lxml")
-                 except:
+                try:
+                    soup = BeautifulSoup(crawl, "lxml")
+                except:
                     print("Error creating 'soup' object")
                     os.system("sudo service tor stop")
                     exit()
