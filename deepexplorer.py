@@ -170,7 +170,7 @@ def torproxy():
     try:
         check = requests.get("https://google.es", proxies=proxies)
     except:
-        print(" [\033[0;31mNo connected\033[0m]")
+        print(" [\033[0;31mNot connected\033[0m]")
         print("Starting Tor instance ", end="", flush=True)
         os.system("service tor start")
         sleep(8)
